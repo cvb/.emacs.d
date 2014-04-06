@@ -1,6 +1,11 @@
 (cd "~/.emacs.d")
 
-(server-start)
+(let ((path (shell-command-to-string ". ~/.profile; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path
+        (append
+         (split-string-and-unquote path ":")
+         exec-path)))
 
 (load-file "init/el-get.el")
 

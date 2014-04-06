@@ -13,8 +13,8 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setq exec-path (append exec-path '("/usr/local/bin")))
-(setq exec-path (append exec-path '("/Users/cvb/.cabal/bin/")))
+;; (setq exec-path (append exec-path '("/usr/local/bin")))
+;; (setq exec-path (append exec-path '("/Users/cvb/.cabal/bin/")))
 
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
