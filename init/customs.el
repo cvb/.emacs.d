@@ -29,9 +29,6 @@
 (line-number-mode)
 (show-paren-mode 1)
 
-;; use command as meta
-(setq mac-command-modifier 'meta)
-
 (setq-default tab-width 2)
 ;; to setup tabs
 (setq c-basic-indent 2)

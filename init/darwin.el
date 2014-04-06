@@ -1,5 +1,8 @@
 (setq ns-use-srgb-colorspace t)
 
+;; use command as meta
+(setq mac-command-modifier 'meta)
+
 (quail-define-package
  "russian-mac" "Russian" "RU" nil
  "ЙЦУКЕН Russian Mac layout"
