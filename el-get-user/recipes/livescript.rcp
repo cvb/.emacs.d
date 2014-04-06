@@ -1,0 +1,4 @@
+(:name livescript-mode
+       :type git
+       :url "git@github.com:bdowning/livescript-mode.git"
+       )
