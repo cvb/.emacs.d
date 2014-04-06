@@ -42,9 +42,7 @@
 ;; (setq fci-rule-color "#073540") ; black
 (setq fci-rule-color "#81908f")    ; grey (like comment)
 
-(define-globalized-minor-mode global-fci-mode fci-mode
-  (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+(add-hook 'prog-mode-hook 'turn-on-fci-mode)
 
 ;; (add-to-list 'package-archives
 ;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -69,3 +67,4 @@
             ;; We remove Which Function Mode from the mode line, because it's mostly
             ;; invisible here anyway.
             (assq-delete-all 'which-func-mode mode-line-misc-info))
+
