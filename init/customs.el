@@ -68,3 +68,5 @@
             ;; invisible here anyway.
             (assq-delete-all 'which-func-mode mode-line-misc-info))
 
+(require 'window-number)
+(window-number-meta-mode 1)
