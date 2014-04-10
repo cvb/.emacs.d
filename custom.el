@@ -23,6 +23,7 @@
  '(global-whitespace-mode t)
  '(haskell-check-command "/Users/cvb/.cabal/bin/hlint")
  '(haskell-stylish-on-save nil)
+ '(helm-buffer-details-flag nil)
  '(org-directory "~/.org")
  '(org-time-clocksum-use-effort-durations t)
  '(whitespace-style

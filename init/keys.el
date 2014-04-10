@@ -9,3 +9,5 @@
 
 (set-register ?l '(file . "~/.org/plan.org"))
 (set-register ?p '(file . "~/.org/passes.org.gpg"))
+
+(global-set-key (kbd "C-x b") 'helm-mini)
