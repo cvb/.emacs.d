@@ -24,8 +24,13 @@
  '(haskell-check-command "/Users/cvb/.cabal/bin/hlint")
  '(haskell-stylish-on-save nil)
  '(helm-buffer-details-flag nil)
+ '(helm-mini-default-sources
+   (quote
+    (helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-buffer-not-found)))
  '(org-directory "~/.org")
  '(org-time-clocksum-use-effort-durations t)
+ '(projectile-generic-command "find . -type f -maxdepth 1 -print0")
+ '(projectile-require-project-root nil)
  '(whitespace-style
    (quote
     (face tabs spaces trailing space-before-tab indentation empty space-after-tab space-mark tab-mark))))
