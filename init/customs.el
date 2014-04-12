@@ -70,3 +70,4 @@
 
 (require 'window-number)
 (window-number-meta-mode 1)
+(window-number-mode 1)
