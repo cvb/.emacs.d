@@ -15,3 +15,12 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((dot . t)))
+
+(defun org-traverse-example ()
+  (interactive)
+  (let* ((current-level (org-current-level))
+         (fn (lambda () (pp (org-current-level)))))
+    (org-map-entries
+     (lambda () (when (= (org-current-level) (+ current-level 1)) (funcall fn)))
+     nil 'tree)))
+
