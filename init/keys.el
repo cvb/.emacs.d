@@ -9,5 +9,9 @@
 
 (set-register ?l '(file . "~/.org/plan.org"))
 (set-register ?p '(file . "~/.org/passes.org.gpg"))
+(set-register ?t '(file . "~/.org/thoughts.org"))
 
 (global-set-key (kbd "C-x b") 'helm-mini)
+
+(global-set-key "\M-=" 'zoom-frm-in)
+(global-set-key "\M--" 'zoom-frm-out)
