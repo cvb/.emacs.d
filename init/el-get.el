@@ -10,6 +10,14 @@
   (let* ((recipe-glob (locate-user-emacs-file (concat overlay "/recipes/*.rcp")))
          (recipe-files (file-expand-wildcards recipe-glob))
          (recipes (mapcar 'el-get-read-recipe-file recipe-files)))
+    (setq recipes
+          (append
+           recipes
+           '((:name zoom-frm
+                    :depends (frame-fns))
+             (:name projectile
+              :depends (dash s pkg-info helm)
+              :after (lambda () (require 'helm-projectile))))))
     (mapcar (lambda (r) (add-to-list 'el-get-sources r)) recipes)
     (el-get 'sync (mapcar 'el-get-source-name recipes))))
 
@@ -17,3 +25,5 @@
 ;; EL-GET SYNC OVERLAYS
 (el-get-sync-recipes "el-get-user")
 (el-get 'sync)
+
+(require 'helm-projectile)
