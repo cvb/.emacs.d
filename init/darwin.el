@@ -1,7 +1,8 @@
-(setq ns-use-srgb-colorspace t)
+(setq solarized-broken-srgb t)
 
 ;; use command as meta
 (setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
 
 (quail-define-package
  "russian-mac" "Russian" "RU" nil

@@ -1,6 +1,5 @@
-
 ;; NO FRILLS
-(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+(dolist (mode '(tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
 (setq inhibit-startup-screen t)
 ;; NO JUNK
@@ -71,3 +70,4 @@
 (require 'window-number)
 (window-number-meta-mode 1)
 (window-number-mode 1)
+
