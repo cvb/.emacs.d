@@ -18,4 +18,4 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-(global-set-key (kbd "s-m") 'just-one-space)
+(global-set-key (kbd "s-SPC") 'just-one-space)
