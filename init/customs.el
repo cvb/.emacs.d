@@ -34,6 +34,7 @@
 (setq tab-width 2)
 (setq-default indent-tabs-mode nil)
 
+(require 'color-theme)
 (color-theme-solarized-light)
 
 (setq-default fci-rule-column 80)
@@ -43,15 +44,6 @@
 
 (add-hook 'prog-mode-hook 'turn-on-fci-mode)
 
-;; (add-to-list 'package-archives
-;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-;; (setq el-get-sources
-;;       '((:name sbt-mode
-;;                :type git
-;;                :url "git://github.com/hvesalai/sbt-mode.git"
-;;                )))
-
 (set-face-attribute 'default nil :height 140)
 
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
@@ -59,15 +51,43 @@
 (set-variable 'magit-emacsclient-executable "/usr/local/bin/emacsclient")
 
 ;; Show the current function name in the header line
-(which-function-mode)
-(setq-default header-line-format
-              '((which-func-mode ("" which-func-format " "))))
-(setq mode-line-misc-info
+;; (which-function-mode)
+;; (setq-default header-line-format
+;;               '((which-func-mode ("" which-func-format " "))))
+;; (setq mode-line-misc-info
             ;; We remove Which Function Mode from the mode line, because it's mostly
             ;; invisible here anyway.
-            (assq-delete-all 'which-func-mode mode-line-misc-info))
+            ;; (assq-delete-all 'which-func-mode mode-line-misc-info))
 
 (require 'window-number)
 (window-number-meta-mode 1)
 (window-number-mode 1)
+
+(custom-set-variables
+ '(ansi-color-for-comint-mode-on t)
+ '(ansi-color-names-vector
+   ["black" "red" "green" "yellow" "blue" "magenta" "cyan" "white"])
+ '(ansi-color-names-vector
+   ["#073642" "#dc322f" "#859900" "#b58900"
+    "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
+ '(ansi-term-color-vector
+   [unspecified "#073642" "#dc322f" "#859900"
+                "#b58900" "#268bd2" "#d33682"
+                "#2aa198" "#eee8d5"]))
+
+;; For ansi-term to also have solarized colors we need to additionally set with setq
+;; I don't know why
+(setq ansi-color-names-vector
+      ["black" "red" "green" "yellow" "blue" "magenta" "cyan" "white"])
+(setq ansi-term-color-vector
+      [unspecified "#073642" "#dc322f" "#859900"
+                   "#b58900" "#268bd2" "#d33682"
+                   "#2aa198" "#eee8d5"])
+
+(add-hook 'clojure-mode-hook    'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'lisp-mode-hook       'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+(projectile-global-mode)
 
