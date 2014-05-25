@@ -19,3 +19,26 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 
 (global-set-key (kbd "s-SPC") 'just-one-space)
+
+(eval-after-load 'clojure-mode
+  '(define-key clojure-mode-map (kbd "RET") 'paredit-newline))
+
+(eval-after-load 'visual-line-mode
+  '(define-key clojure-mode-map (kbd "C-k") 'kill-line))
+
+(key-chord-mode 1)
+(key-chord-define-global "jj" 'ace-jump-mode)
+
+(require 'helm-projectile)
+(key-chord-define-global "bb" 'helm-mini)
+
+(key-chord-define outline-mode-map "nn" 'outline-next-visible-heading)
+(key-chord-define outline-mode-map "pp" 'outline-previous-visible-heading)
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(global-set-key (kbd "C-S-t") 'mc/mark-sgml-tag-pair)
