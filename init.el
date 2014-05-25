@@ -1,13 +1,11 @@
 (cd "~/.emacs.d")
 
-(let ((path (shell-command-to-string ". ~/.profile; echo -n $PATH")))
-  (setenv "PATH" path)
-  (setq exec-path
-        (append
-         (split-string-and-unquote path ":")
-         exec-path)))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(load-file "init/el-get.el")
+(setq package-enable-at-startup nil)
+(package-initialize)
 
 (load-file "init/scratch.el")
 
