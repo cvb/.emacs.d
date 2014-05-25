@@ -23,5 +23,5 @@
 ;;                                      allcomp
 ;;                                      nil require-match initial-input hist def))
 ;;         ad-do-it))))
-(ad-deactivate 'completing-read)
+
 (ido-mode t)
