@@ -22,8 +22,9 @@
   (with-current-buffer (get-buffer "*scratch*")
     (if (file-exists-p persistent-scratch-filename)
         (copy-file persistent-scratch-filename
-                   (make-persistent-scratch-backup-name)))
-    (write-region (point-min) (point-max) 
+                   (make-persistent-scratch-backup-name)
+                   t))
+    (write-region (point-min) (point-max)
                   persistent-scratch-filename)))
 
 (defun load-persistent-scratch ()
@@ -32,7 +33,8 @@
   (if (file-exists-p persistent-scratch-filename)
       (with-current-buffer (get-buffer "*scratch*")
         (delete-region (point-min) (point-max))
-        (shell-command (format "cat %s" persistent-scratch-filename) (current-buffer)))))
+        (shell-command (format "cat %s" persistent-scratch-filename)
+                       (current-buffer)))))
 
 
 (push #'save-persistent-scratch kill-emacs-hook)
