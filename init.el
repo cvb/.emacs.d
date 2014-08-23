@@ -14,6 +14,7 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
+(load-file "init/evil.el")
 (load-file "init/scratch.el")
 
 (load-file "init/utils.el")
