@@ -35,7 +35,7 @@
 (setq-default indent-tabs-mode nil)
 
 (require 'color-theme)
-(color-theme-solarized-light)
+(color-theme-solarized-dark)
 
 (setq-default fci-rule-column 80)
 (setq fci-rule-width 1)
@@ -91,3 +91,50 @@
 
 (projectile-global-mode)
 
+
+(add-to-list 'load-path "~/src/stuff/ensime/dist/elisp/")
+(require 'ensime)
+
+;; This step causes the ensime-mode to be started whenever
+;; scala-mode is started for a buffer. You may have to customize this step
+;; if you're not using the standard scala mode.
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+(eval-after-load "haskell-mode"
+  '(progn
+    (define-key haskell-mode-map (kbd "C-x C-d") nil)
+    (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+    (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
+    (define-key haskell-mode-map (kbd "C-c C-b") 'haskell-interactive-switch)
+    (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+    (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+    (define-key haskell-mode-map (kbd "C-c M-.") nil)
+    (define-key haskell-mode-map (kbd "C-c C-d") nil)))
+
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(defvar haskell-mode-hook)
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (ghc-init)
+            (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+            (turn-on-haskell-indentation)))
+
+(eval-after-load "ghc-check"
+  '(progn
+     (setq ghc-display-error 'minibuffer)
+     (defun ghc-start-process (name buf)
+       (let ((pro (start-file-process name buf ghc-interactive-command
+                                      "-b" "\n" "-l"
+                                      "-g" "-XFlexibleContexts"
+                                      "-g" "-XOverloadedStrings"
+                                      "-g" "-XRecordWildCards"
+                                      "-g" "-XNamedFieldPuns"
+                                      "-g" "-XTupleSections"
+                                      "-g" "-XQuasiQuotes"
+                                      "-g" "-XLambdaCase")))
+         (set-process-filter pro 'ghc-process-filter)
+         (set-process-sentinel pro 'ghc-process-sentinel)
+         (set-process-query-on-exit-flag pro nil)
+         pro))))
+(winner-mode 1)
