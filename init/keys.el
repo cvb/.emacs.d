@@ -5,7 +5,7 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key (kbd "C-z") 'advertised-undo)
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region-or-line)
+(global-set-key (kbd "C-'") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "M-l") 'goto-line)
 
 (global-set-key (kbd "C-c C-g s") 'magit-status)
@@ -29,11 +29,13 @@
 (eval-after-load 'clojure-mode
   '(define-key clojure-mode-map (kbd "RET") 'paredit-newline))
 
-(eval-after-load 'visual-line-mode
-  '(define-key clojure-mode-map (kbd "C-k") 'kill-line))
+;; (eval-after-load 'visual-line-mode
+;;   '(define-key clojure-mode-map (kbd "C-k") 'kill-line))
 
 (require 'helm-projectile)
 ;(key-chord-define-global "bb" 'helm-mini)
+;; (key-chord-define-global "de" 'kill-line)
+;; (key-chord-define-global "dd" 'kill-whole-line)
 
 (key-chord-define outline-mode-map "nn" 'outline-next-visible-heading)
 (key-chord-define outline-mode-map "pp" 'outline-previous-visible-heading)
@@ -48,6 +50,17 @@
 
 (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
 
+(require 'ace-jump-mode)
+
+(defun kill-end-or-whole (char)
+  (cond ((equal char "e") (kill-line))
+        ((equal char "d") (kill-whole-line))
+        (t (message "should be e or d"))))
+
+(defun kill-end-or-whole-int ()
+  (interactive)
+  (kill-end-or-whole (read-key-sequence "e or d")))
+
 (defvar my-keys-mm (make-keymap) "my-keys-minor-mode keymap.")
 
 (define-key my-keys-mm (kbd "C-j") 'backward-char)
@@ -57,6 +70,12 @@
 
 (define-key my-keys-mm (kbd "C-M-;") 'forward-word)
 (define-key my-keys-mm (kbd "C-M-j") 'backward-word)
+
+(define-key my-keys-mm (kbd "C-c d") 'kill-end-or-whole-int)
+
+(define-key my-keys-mm (kbd "C-c w") 'ace-jump-word-mode)
+(define-key my-keys-mm (kbd "C-c e") 'ace-jump-char-mode)
+(define-key my-keys-mm (kbd "C-c r") 'ace-jump-line-mode)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
