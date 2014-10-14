@@ -1,4 +1,0 @@
-(:name sbt-mode
-       :type git
-       :url "git://github.com/hvesalai/sbt-mode.git"
-       )
