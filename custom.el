@@ -34,6 +34,9 @@
  '(global-visual-line-mode t)
  '(global-whitespace-mode t)
  '(haskell-check-command "/Users/cvb/.cabal/bin/hlint")
+ '(haskell-compile-cabal-build-alt-command
+   "cd %s && ~/.cabal/bin/cabal clean -s && ~/.cabal/bin/cabal build --ghc-option=-ferror-spans")
+ '(haskell-compile-cabal-build-command "cd %s && cabal build --ghc-option=-ferror-spans")
  '(haskell-mode-hook nil)
  '(haskell-notify-p t)
  '(haskell-process-type (quote cabal-repl))
@@ -46,9 +49,14 @@
     (helm-source-buffers-list helm-source-recentf helm-source-projectile-files-list helm-source-buffer-not-found)))
  '(js-indent-level 2)
  '(org-directory "~/.org")
- '(org-time-clocksum-use-effort-durations t)
+ '(org-time-clocksum-format
+   (quote
+    (:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)))
+ '(org-time-clocksum-use-effort-durations nil)
  '(projectile-generic-command "find . -type f -maxdepth 1 -print0")
  '(projectile-require-project-root nil)
+ '(sh-basic-offset 2)
+ '(sh-indentation 2)
  '(solarized-broken-srgb t)
  '(solarized-contrast (quote high))
  '(visual-line-fringe-indicators (quote (left-curly-arrow right-curly-arrow)))
