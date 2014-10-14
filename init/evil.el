@@ -9,11 +9,11 @@
 (eval-after-load "magit"
     (evil-leader/set-key "g" 'magit-status))
 
-(eval-after-load "git-gutter-mode"
-  (evil-leader/set-key
-    "s" 'git-gutter:stage-hunk
-    "n" 'git-gutter:next-hunk
-    "p" 'git-gutter:previous-hunk))
+;; (eval-after-load "git-gutter-mode"
+;;   (evil-leader/set-key
+;;     "s" 'git-gutter:stage-hunk
+;;     "n" 'git-gutter:next-hunk
+;;     "p" 'git-gutter:previous-hunk))
 
 (evil-leader/set-key
     "k" 'kill-buffer
@@ -22,7 +22,7 @@
 
 (evil-leader/set-key
     "f" 'find-file
-    "w" 'evil-normal-and-save)
+    "s" 'evil-normal-and-save)
 
 (eval-after-load "helm"
   (evil-leader/set-key

@@ -10,11 +10,14 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
-
+(setq package-check-signature nil)
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-(load-file "init/evil.el")
+
+
+;; (load-file "init/evil.el")
+
 (load-file "init/scratch.el")
 
 (load-file "init/utils.el")
@@ -32,3 +35,4 @@
 (load-file "init/keys.el")
 
 (cd "~/")
+
