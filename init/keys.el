@@ -1,30 +1,40 @@
 (require 'key-chord)
 (key-chord-mode 1)
 
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
-(global-set-key (kbd "C-z") 'advertised-undo)
-(global-set-key (kbd "C-'") 'comment-or-uncomment-region-or-line)
-(global-set-key (kbd "M-l") 'goto-line)
+(defvar my-keys-mm (make-keymap) "my-keys-minor-mode keymap.")
 
-(global-set-key (kbd "C-c C-g s") 'magit-status)
+(defun k (key def)
+  (define-key my-keys-mm key def))
+
+(k "\C-w" 'backward-kill-word)
+
+(k (kbd "C-c C-k") '(lambda ()
+                      (interactive)
+                      (if (use-region-p)
+                          (kill-region (point) (mark))
+                        (kill-whole-line))))
+
+(k (kbd "C-z") 'undo)
+(k (kbd "C-'") 'comment-or-uncomment-region-or-line)
+(k (kbd "M-l") 'goto-line)
+
+(k (kbd "C-c C-g s") 'magit-status)
 
 (set-register ?l '(file . "~/.org/plan.org"))
 (set-register ?p '(file . "~/.org/passes.org.gpg"))
 (set-register ?t '(file . "~/.org/thoughts.org"))
 (set-register ?h '(file . "~/.org/history.org"))
 
-(global-set-key (kbd "C-x b") 'helm-mini)
+(k (kbd "C-x b") 'helm-mini)
 
-(global-set-key "\M-=" 'zoom-frm-in)
-(global-set-key "\M--" 'zoom-frm-out)
+(k "\M-=" 'zoom-frm-in)
+(k "\M--" 'zoom-frm-out)
 
-(global-set-key (kbd "M-x") 'helm-M-x)
+(k (kbd "M-x") 'helm-M-x)
 
-(global-set-key (kbd "M-`") 'other-window)
+(k (kbd "M-`") 'other-window)
 
-(global-set-key (kbd "s-SPC") 'just-one-space)
+(k (kbd "s-SPC") 'just-one-space)
 
 (eval-after-load 'clojure-mode
   '(define-key clojure-mode-map (kbd "RET") 'paredit-newline))
@@ -40,34 +50,36 @@
 (key-chord-define outline-mode-map "nn" 'outline-next-visible-heading)
 (key-chord-define outline-mode-map "pp" 'outline-previous-visible-heading)
 
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(k (kbd "C-S-c C-S-c") 'mc/edit-lines)
 
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(k (kbd "C->") 'mc/mark-next-like-this)
+(k (kbd "C-<") 'mc/mark-previous-like-this)
+(k (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-(global-set-key (kbd "C-S-t") 'mc/mark-sgml-tag-pair)
+(k (kbd "C-S-t") 'mc/mark-sgml-tag-pair)
 
 (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
 
-(defvar my-keys-mm (make-keymap) "my-keys-minor-mode keymap.")
 
-(define-key my-keys-mm (kbd "C-j") 'backward-char)
-(define-key my-keys-mm (kbd "C-k") 'next-line)
-(define-key my-keys-mm (kbd "C-l") 'previous-line)
-(define-key my-keys-mm (kbd "C-;") 'forward-char)
 
-(define-key my-keys-mm (kbd "C-M-;") 'forward-word)
-(define-key my-keys-mm (kbd "C-M-j") 'backward-word)
+(k (kbd "C-j") 'backward-char)
+(k (kbd "C-k") 'next-line)
+(k (kbd "C-l") 'previous-line)
+(k (kbd "C-;") 'forward-char)
 
-(define-key my-keys-mm (kbd "C-c d") 'kill-end-or-whole-int)
+(k (kbd "C-M-;") 'forward-word)
+(k (kbd "C-M-j") 'backward-word)
 
-(define-key my-keys-mm (kbd "C-o") 'newline-and-indent)
-(define-key my-keys-mm (kbd "C-S-o") 'prevnewline-and-indent)
+(k (kbd "C-o") 'newline-and-indent)
+(k (kbd "C-S-o") 'prevnewline-and-indent)
 
-(define-key my-keys-mm (kbd "C-c w") 'ace-jump-word-mode)
-(define-key my-keys-mm (kbd "C-c e") 'ace-jump-char-mode)
-(define-key my-keys-mm (kbd "C-c r") 'ace-jump-line-mode)
+(require 'ace-jump-mode)
+(k (kbd "C-c w") 'ace-jump-word-mode)
+(k (kbd "C-c e") 'ace-jump-char-mode)
+(k (kbd "C-c r") 'ace-jump-line-mode)
+
+(k (kbd "C-/") 'repeat)
+
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
