@@ -47,3 +47,28 @@
 (global-set-key (kbd "C-S-t") 'mc/mark-sgml-tag-pair)
 
 (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+
+(defvar my-keys-mm (make-keymap) "my-keys-minor-mode keymap.")
+
+(define-key my-keys-mm (kbd "C-j") 'backward-char)
+(define-key my-keys-mm (kbd "C-k") 'next-line)
+(define-key my-keys-mm (kbd "C-l") 'previous-line)
+(define-key my-keys-mm (kbd "C-;") 'forward-char)
+
+(define-key my-keys-mm (kbd "C-M-;") 'forward-word)
+(define-key my-keys-mm (kbd "C-M-j") 'backward-word)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  t " my-keys" my-keys-mm)
+
+(my-keys-minor-mode 1)
+
+;; keep my minore mode at firt place, so no one can rewrite it's bindings
+(defadvice load (after give-my-keybindings-priority)
+  "Try to ensure that my keybindings always have priority."
+  (if (not (eq (car (car minor-mode-map-alist)) 'my-keys-minor-mode))
+      (let ((mykeys (assq 'my-keys-minor-mode minor-mode-map-alist)))
+        (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
+        (add-to-list 'minor-mode-map-alist mykeys))))
+(ad-activate 'load)
