@@ -50,17 +50,6 @@
 
 (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
 
-(require 'ace-jump-mode)
-
-(defun kill-end-or-whole (char)
-  (cond ((equal char "e") (kill-line))
-        ((equal char "d") (kill-whole-line))
-        (t (message "should be e or d"))))
-
-(defun kill-end-or-whole-int ()
-  (interactive)
-  (kill-end-or-whole (read-key-sequence "e or d")))
-
 (defvar my-keys-mm (make-keymap) "my-keys-minor-mode keymap.")
 
 (define-key my-keys-mm (kbd "C-j") 'backward-char)
@@ -72,6 +61,9 @@
 (define-key my-keys-mm (kbd "C-M-j") 'backward-word)
 
 (define-key my-keys-mm (kbd "C-c d") 'kill-end-or-whole-int)
+
+(define-key my-keys-mm (kbd "C-o") 'newline-and-indent)
+(define-key my-keys-mm (kbd "C-S-o") 'prevnewline-and-indent)
 
 (define-key my-keys-mm (kbd "C-c w") 'ace-jump-word-mode)
 (define-key my-keys-mm (kbd "C-c e") 'ace-jump-char-mode)
