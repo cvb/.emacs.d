@@ -1,4 +1,4 @@
-(setq solarized-broken-srgb t)
+;; (setq solarized-broken-srgb t)
 
 ;; use command as meta
 (setq mac-command-modifier 'meta)

@@ -138,3 +138,6 @@
          (set-process-query-on-exit-flag pro nil)
          pro))))
 (winner-mode 1)
+
+
+(require 'help-fns+)
