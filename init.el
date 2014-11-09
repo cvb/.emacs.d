@@ -34,5 +34,7 @@
 
 (load-file "init/keys.el")
 
+(load-file "init/python.el")
+
 (cd "~/")
 
