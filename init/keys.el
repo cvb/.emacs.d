@@ -106,6 +106,13 @@
 
 (define-key helm-map (kbd "C-k") 'helm-next-line)
 (define-key helm-map (kbd "C-l") 'helm-previous-line)
-(define-key helm-find-files-map (kbd "<ret>") 'helm-execute-persistent-action)
 (define-key helm-find-files-map (kbd "C-k") 'helm-next-line)
 (define-key helm-find-files-map (kbd "C-l") 'helm-previous-line)
+
+;; expand helm selection if it is dir or open in case of regular file
+(defun expand-dir-or-open ()
+  (interactive)
+  (if (file-directory-p (helm-get-selection))
+      (helm-execute-persistent-action)
+    (helm-maybe-exit-minibuffer)))
+(define-key helm-find-files-map (kbd "<RET>") 'expand-dir-or-open)

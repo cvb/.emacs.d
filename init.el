@@ -29,7 +29,7 @@
 
 (load-file "init/org.el")
 
-(load-file "init/ido.el")
+;; (load-file "init/ido.el")
 
 
 (load-file "init/keys.el")

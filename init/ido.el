@@ -1,4 +1,4 @@
-(defvar ido-enable-replace-completing-read t
+;; (defvar ido-enable-replace-completing-read t
   "If t, use ido-completing-read instead of completing-read if possible.
 
     Set it to nil using let in around-advice for functions where the
@@ -24,4 +24,4 @@
 ;;                                      nil require-match initial-input hist def))
 ;;         ad-do-it))))
 
-(ido-mode t)
+;; (ido-mode t)
