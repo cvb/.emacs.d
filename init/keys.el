@@ -1,5 +1,5 @@
-(require 'key-chord)
-(key-chord-mode 1)
+;(require 'key-chord)
+;(key-chord-mode 1)
 
 (defvar my-keys-mm (make-keymap) "my-keys-minor-mode keymap.")
 
@@ -47,8 +47,8 @@
 ;; (key-chord-define-global "de" 'kill-line)
 ;; (key-chord-define-global "dd" 'kill-whole-line)
 
-(key-chord-define outline-mode-map "nn" 'outline-next-visible-heading)
-(key-chord-define outline-mode-map "pp" 'outline-previous-visible-heading)
+;(key-chord-define outline-mode-map "nn" 'outline-next-visible-heading)
+;(key-chord-define outline-mode-map "pp" 'outline-previous-visible-heading)
 
 (k (kbd "C-S-c C-S-c") 'mc/edit-lines)
 
@@ -80,6 +80,7 @@
 
 (k (kbd "C-/") 'repeat)
 
+(k (kbd "C-x C-f") 'helm-find-files)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
@@ -95,3 +96,16 @@
         (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
         (add-to-list 'minor-mode-map-alist mykeys))))
 (ad-activate 'load)
+
+;; rebind tab to run persistent action
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+;; make TAB works in terminal
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+;; list actions using C-z
+(define-key helm-map (kbd "C-z")  'helm-select-action)
+
+(define-key helm-map (kbd "C-k") 'helm-next-line)
+(define-key helm-map (kbd "C-l") 'helm-previous-line)
+(define-key helm-find-files-map (kbd "<ret>") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-k") 'helm-next-line)
+(define-key helm-find-files-map (kbd "C-l") 'helm-previous-line)
