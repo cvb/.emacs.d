@@ -71,6 +71,8 @@
  '(org-clock-overlay ((t (:background "#212521"))))
  '(shm-current-face ((t (:background "#eee8d5"))))
  '(shm-quarantine-face ((t (:background "lemonchiffon"))))
- '(whitespace-space ((t (:foreground "#1a3842")))))
+ '(whitespace-indentation ((t (:foreground "#2a4852"))))
+ '(whitespace-space ((t (:inherit whitespace-indentation))))
+ '(whitespace-tab ((t (:inherit whitespace-indentation)))))
 
 
