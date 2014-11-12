@@ -1,3 +1,5 @@
+(require 'helm-config)
+
 ;; NO FRILLS
 (dolist (mode '(tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
@@ -92,14 +94,6 @@
 (projectile-global-mode)
 
 
-(add-to-list 'load-path "~/src/stuff/ensime/dist/elisp/")
-(require 'ensime)
-
-;; This step causes the ensime-mode to be started whenever
-;; scala-mode is started for a buffer. You may have to customize this step
-;; if you're not using the standard scala mode.
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
 (eval-after-load "haskell-mode"
   '(progn
     (define-key haskell-mode-map (kbd "C-x C-d") nil)
@@ -118,7 +112,9 @@
           (lambda ()
             (ghc-init)
             (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
-            (turn-on-haskell-indentation)))
+            (turn-on-hi2)
+            ;; (turn-on-haskell-indentation)
+            ))
 
 (eval-after-load "ghc-check"
   '(progn

@@ -42,7 +42,7 @@
 ;; (eval-after-load 'visual-line-mode
 ;;   '(define-key clojure-mode-map (kbd "C-k") 'kill-line))
 
-(require 'helm-projectile)
+;(require 'helm-projectile)
 ;(key-chord-define-global "bb" 'helm-mini)
 ;; (key-chord-define-global "de" 'kill-line)
 ;; (key-chord-define-global "dd" 'kill-whole-line)
