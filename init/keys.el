@@ -70,6 +70,10 @@
 (k (kbd "C-M-;") 'forward-word)
 (k (kbd "C-M-j") 'backward-word)
 
+(k (kbd "C-M-k") 'scroll-up-command)
+(k (kbd "C-M-l") 'scroll-down-command)
+
+
 (k (kbd "C-o") 'newline-and-indent)
 (k (kbd "C-S-o") 'prevnewline-and-indent)
 
