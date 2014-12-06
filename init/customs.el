@@ -8,14 +8,7 @@
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
       backup-directory-alist `((".*" . ,temporary-file-directory)))
 
-;; CUSTOM FILE
-(setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file 'noerror)
-
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; (setq exec-path (append exec-path '("/usr/local/bin")))
-;; (setq exec-path (append exec-path '("/Users/cvb/.cabal/bin/")))
 
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -44,22 +37,28 @@
 ;; (setq fci-rule-color "#073540") ; black
 (setq fci-rule-color "#81908f")    ; grey (like comment)
 
-(add-hook 'prog-mode-hook 'turn-on-fci-mode)
+;; (add-hook 'prog-mode-hook 'turn-on-fci-mode)
 
 (set-face-attribute 'default nil :height 140)
 
-(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+;; ;; (setq line-move-visual nil)
 
-(set-variable 'magit-emacsclient-executable "/usr/local/bin/emacsclient")
+;; (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-;; Show the current function name in the header line
-;; (which-function-mode)
-;; (setq-default header-line-format
-;;               '((which-func-mode ("" which-func-format " "))))
-;; (setq mode-line-misc-info
-            ;; We remove Which Function Mode from the mode line, because it's mostly
-            ;; invisible here anyway.
-            ;; (assq-delete-all 'which-func-mode mode-line-misc-info))
+;; ;; (setq-default global-visual-line-mode t)
+;; ;; (setq default-truncate-lines nil)
+
+
+;; (set-variable 'magit-emacsclient-executable "/usr/local/bin/emacsclient")
+
+;; ;; Show the current function name in the header line
+;; ;; (which-function-mode)
+;; ;; (setq-default header-line-format
+;; ;;               '((which-func-mode ("" which-func-format " "))))
+;; ;; (setq mode-line-misc-info
+;;             ;; We remove Which Function Mode from the mode line, because it's mostly
+;;             ;; invisible here anyway.
+;;             ;; (assq-delete-all 'which-func-mode mode-line-misc-info))
 
 (require 'window-number)
 (window-number-meta-mode 1)
@@ -120,9 +119,9 @@
   '(progn
      (setq ghc-display-error 'minibuffer)
      (defun ghc-start-process (name buf)
-       (let ((pro (start-file-process name buf ghc-interactive-command
-                                      "-b" "\n" "-l"
-                                      "-g" "-XFlexibleContexts"
+       (let ((start-file-process name buf ghc-interactive-command
+                                 "-b" "\n" "-l"
+                                 (pro "-g" "-XFlexibleContexts"
                                       "-g" "-XOverloadedStrings"
                                       "-g" "-XRecordWildCards"
                                       "-g" "-XNamedFieldPuns"
