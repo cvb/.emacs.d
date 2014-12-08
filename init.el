@@ -40,6 +40,9 @@
 
 (load-file "init/scratch.el")
 
+(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  (add-hook hook 'turn-on-elisp-slime-nav-mode))
+
 (load-file "init/org.el")
 
 ;; (load-file "init/ido.el")
