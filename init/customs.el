@@ -41,6 +41,8 @@
 
 (set-face-attribute 'default nil :height 140)
 
+(fringe-mode 1)
+(setq-default indicate-empty-lines t)
 ;; ;; (setq line-move-visual nil)
 
 ;; (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
