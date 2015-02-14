@@ -120,20 +120,21 @@
 (eval-after-load "ghc-check"
   '(progn
      (setq ghc-display-error 'minibuffer)
-     (defun ghc-start-process (name buf)
-       (let ((start-file-process name buf ghc-interactive-command
-                                 "-b" "\n" "-l"
-                                 (pro "-g" "-XFlexibleContexts"
-                                      "-g" "-XOverloadedStrings"
-                                      "-g" "-XRecordWildCards"
-                                      "-g" "-XNamedFieldPuns"
-                                      "-g" "-XTupleSections"
-                                      "-g" "-XQuasiQuotes"
-                                      "-g" "-XLambdaCase")))
-         (set-process-filter pro 'ghc-process-filter)
-         (set-process-sentinel pro 'ghc-process-sentinel)
-         (set-process-query-on-exit-flag pro nil)
-         pro))))
+     ;; (defun ghc-start-process (name buf)
+     ;;   (let ((start-file-process name buf ghc-interactive-command
+     ;;                             "-b" "\n" "-l"
+     ;;                             (pro "-g" "-XFlexibleContexts"
+     ;;                                  "-g" "-XOverloadedStrings"
+     ;;                                  "-g" "-XRecordWildCards"
+     ;;                                  "-g" "-XNamedFieldPuns"
+     ;;                                  "-g" "-XTupleSections"
+     ;;                                  "-g" "-XQuasiQuotes"
+     ;;                                  "-g" "-XLambdaCase")))
+     ;;     (set-process-filter pro 'ghc-process-filter)
+     ;;     (set-process-sentinel pro 'ghc-process-sentinel)
+     ;;     (set-process-query-on-exit-flag pro nil)
+     ;;     pro))
+     ))
 (winner-mode 1)
 
 
