@@ -26,3 +26,13 @@
      (lambda () (when (= (org-current-level) (+ current-level 1)) (funcall fn)))
      nil 'tree)))
 
+(setq org-agenda-files '("~/.org/habbits.org"))
+
+(setq org-default-notes-file "~/.org/notes.org")
+(define-key global-map "\C-cc" 'org-capture)
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/.org/notes.org")
+         "* %?\n  %i\n  %a")
+        ("w" "Todo" entry (file "~/.org/wannado.org")
+         "* TODO %? %^g\n %a")))
