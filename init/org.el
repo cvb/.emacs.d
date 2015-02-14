@@ -1,5 +1,7 @@
 (require 'json)
 
+(setq whitespace-global-modes '(not org-mode))
+
 (defun org-as-json-to-file (&optional path)
   "Export the current Org-mode buffer as JSON to the supplied PATH."
   (interactive "Fwrite to file: ")
